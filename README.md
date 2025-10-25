@@ -9,19 +9,46 @@ This project demonstrates how to:
 - Build a relational database using MySQL.
 - Present the entire workflow through report and presentation files.
 
-## 1. Clone the Repository
+## 1. 🧠 Clone the Repository
 
 ```bash
 git clone https://github.com/<edricemerson>/<construction-material-database>.git
 cd <construction-material-database>
 ```
 
-## 2. Set up VS Code + MySQL Shell / CLI
+## 2. 💻 Set up VS Code + MySQL Shell / CLI
 ### Downloading required tools
 | 🛠️ Tool | 💡 Purpose | 🔗 Download |
 |----------|-------------|-------------|
 | [**VS Code**](https://code.visualstudio.com) | Code editor for writing and running SQL or web projects. | [Download](https://code.visualstudio.com) |
 | [**MySQL Server**](https://dev.mysql.com/downloads/mysql/) | Database engine that runs your SQL scripts. | [Download](https://dev.mysql.com/downloads/mysql/) |
-| **MySQL Shell / Command Line** | Used to execute SQL commands and connect to your MySQL Server. *(Included automatically when you install MySQL)* | – |
+| [**MySQL Shell / Command Line**](https://dev.mysql.com/downloads/mysql/) | Used to execute SQL commands and connect to your MySQL Server. *(Included automatically when you install MySQL)* | [Download](https://dev.mysql.com/downloads/mysql/) |
+
+### Verify MySQL Installation
+Open a terminal (or VS Code terminal) and run:
+```bash
+mysql --version
+```
+
+✅ If you see a version number like this you are up to date:
+```bash
+mysql  Ver 8.0.xx for Win64 on x86_64 (MySQL Community Server)
+```
+
+❌ If you see 'mysql' is not recognized...
+→ Add the MySQL bin folder to your PATH:
+```bash
+IDK
+```
+
+### Open MySQL from VS Code Terminal
+Open your project folder in VS Code.
+Open the integrated terminal (Ctrl + ~).
+Run:
+```bash
+mysql -u root -p
+```
+
+
 
 
