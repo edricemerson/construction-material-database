@@ -360,9 +360,12 @@ USE Form_DB;
 ```
 Step 3: Create Tables and Insert Data
 
-You can use the SQL Syntaxes provided from [FormSQL](https://github.com/edricemerson/construction-material-database/blob/main/Kelompok%207%20AOL%20DB.sql)
+You can use the SQL Syntaxes provided from [FormSQL](https://github.com/edricemerson/construction-material-database/blob/main/FormSQL.sql)
 
 # MySQL CLI Syntaxes
+
+<details>
+  <summary style=""><h3>Additional Information</h3></summary>
 
 | Category | Command / Syntax | Description | Example |
 |----------|-----------------|-------------|---------|
@@ -405,6 +408,8 @@ You can use the SQL Syntaxes provided from [FormSQL](https://github.com/edriceme
 | **Miscellaneous** | `SHOW CREATE TABLE table_name;` | See table creation SQL | `SHOW CREATE TABLE Pekerjaan;` |
 | | `EXPLAIN SELECT ...;` | Show query execution plan | `EXPLAIN SELECT * FROM Pekerjaan;` |
 | | `DESCRIBE table_name;` | Show table columns | `DESCRIBE Material;` |
+
+</details>
 
 ![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-00599C?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
