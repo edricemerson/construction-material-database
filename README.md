@@ -406,3 +406,5 @@ You can use the SQL Syntaxes provided from [FormSQL](https://github.com/edriceme
 | | `EXPLAIN SELECT ...;` | Show query execution plan | `EXPLAIN SELECT * FROM Pekerjaan;` |
 | | `DESCRIBE table_name;` | Show table columns | `DESCRIBE Material;` |
 
+![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-00599C?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
