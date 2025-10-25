@@ -213,10 +213,13 @@ This document explains the **normalization process** from **UNF (Unnormalized Fo
 for the *Formulir Pengajuan Contoh Material* dataset.  
 Each step removes redundancy and improves the structure of the database.
 
-You can see and download the excel of the finished product after normalization at [Table Normalisasi.xlsx](https://github.com/edricemerson/construction-material-database/blob/main/Tabel%20Normalisasi.xlsx)
+You can download the excel of the finished product after normalization at [Table Normalisasi.xlsx](https://github.com/edricemerson/construction-material-database/blob/main/Tabel%20Normalisasi.xlsx)
 
----
+or see it in this **Table** Dropdown
 
+<details>
+  <summary style=""><h3>Table</h3></summary>
+  
 ## 🧱 UNF – Unnormalized Form  
 
 The **UNF (Unnormalized Form)** is the raw dataset that contains **repeated and grouped data** in a single table.  
@@ -324,11 +327,82 @@ Relationships between `Pekerjaan`, `Material`, `Lampiran`, and `Lokasi` are sepa
 | 004          | Tidak ada       | Ada             | Tidak ada           |
 | 005          | Ada             | Ada             | Ada                 |
 
+</details>
 
+## 5. 💻 Creating Database and Inserting Data into MySQL
 
+Follow these steps to create a database, tables, and insert data using **VS Code** and **MySQL CLI**.
 
+---
 
+### **Step 1: Open MySQL in VS Code**
 
+Open the terminal in VS Code and type:
 
+```bash
+mysql -u root -p
+```
 
+Enter the password you set when installing MySQL.
+
+Verify you are in MySQL:
+
+```bash
+SHOW DATABASES;
+```
+
+### **Step 2: Create a New Database**
+
+```bash
+CREATE DATABASE Form_DB;
+SHOW DATABASES;
+USE Form_DB;
+```
+Step 3: Create Tables and Insert Data
+
+You can use the SQL Syntaxes provided from [FormSQL](https://github.com/edricemerson/construction-material-database/blob/main/Kelompok%207%20AOL%20DB.sql)
+
+# MySQL CLI Syntaxes
+
+| Category | Command / Syntax | Description | Example |
+|----------|-----------------|-------------|---------|
+| **Database** | `SHOW DATABASES;` | List all databases | `SHOW DATABASES;` |
+| | `CREATE DATABASE db_name;` | Create a new database | `CREATE DATABASE projectdb;` |
+| | `DROP DATABASE db_name;` | Delete a database permanently | `DROP DATABASE Form_DB;` |
+| | `USE db_name;` | Switch to a database | `USE projectdb;` |
+| | `SELECT DATABASE();` | Show current database | `SELECT DATABASE();` |
+| **Table Management** | `SHOW TABLES;` | List all tables in current database | `SHOW TABLES;` |
+| | `DESCRIBE table_name;` | Show table structure | `DESCRIBE Pekerjaan;` |
+| | `CREATE TABLE table_name (...);` | Create a table | `CREATE TABLE Material (...);` |
+| | `DROP TABLE table_name;` | Delete a table | `DROP TABLE Lampiran;` |
+| | `ALTER TABLE table_name ADD column_name datatype;` | Add a new column | `ALTER TABLE Pekerjaan ADD Budget DECIMAL(10,2);` |
+| | `ALTER TABLE table_name DROP COLUMN column_name;` | Remove a column | `ALTER TABLE Material DROP COLUMN Spesifikasi_Kode;` |
+| **Data Manipulation** | `INSERT INTO table_name (col1, col2) VALUES (...);` | Insert a row | `INSERT INTO Pekerjaan VALUES (1,'Budi','Gedung A',...);` |
+| | `UPDATE table_name SET col1=value WHERE condition;` | Update existing data | `UPDATE Pekerjaan SET Lokasi='Lantai 2' WHERE ID_Pekerjaan=1;` |
+| | `DELETE FROM table_name WHERE condition;` | Delete rows | `DELETE FROM Lampiran WHERE ID_Pekerjaan=3;` |
+| | `SELECT * FROM table_name;` | Select all rows | `SELECT * FROM Material;` |
+| | `SELECT col1, col2 FROM table_name WHERE condition;` | Select specific columns | `SELECT Nama_Bahan, Nama_Supplier FROM Material;` |
+| **Filtering & Conditions** | `WHERE column = value` | Filter rows | `SELECT * FROM Pekerjaan WHERE Lokasi='Lantai 1';` |
+| | `WHERE column LIKE '%pattern%'` | Partial match | `SELECT * FROM Pekerjaan WHERE Proyek LIKE '%Mall%';` |
+| | `WHERE column IN (value1,value2)` | Match multiple values | `SELECT * FROM Material WHERE Nama_Bahan IN ('Beton','Baja');` |
+| | `WHERE column BETWEEN val1 AND val2` | Filter range | `SELECT * FROM Pekerjaan WHERE Tanggal_Pengajuan BETWEEN '2024-12-11' AND '2024-12-15';` |
+| | `WHERE column IS NULL / IS NOT NULL` | Check null values | `SELECT * FROM Lampiran WHERE Lampiran_Brosur IS NULL;` |
+| | `AND / OR / NOT` | Combine conditions | `SELECT * FROM Pekerjaan WHERE Lokasi='Lantai 1' AND Paket_Pekerjaan='Struktur';` |
+| **Aggregation & Grouping** | `COUNT(column)` | Count rows | `SELECT COUNT(*) FROM Pekerjaan;` |
+| | `SUM(column)` | Sum values | `SELECT SUM(Budget) FROM Pekerjaan;` |
+| | `AVG(column)` | Average | `SELECT AVG(Budget) FROM Pekerjaan;` |
+| | `MAX(column)` | Maximum | `SELECT MAX(Tanggal_Pengajuan) FROM Pekerjaan;` |
+| | `MIN(column)` | Minimum | `SELECT MIN(Tanggal_Pengajuan) FROM Pekerjaan;` |
+| | `GROUP BY column` | Group rows | `SELECT Paket_Pekerjaan, COUNT(*) FROM Pekerjaan GROUP BY Paket_Pekerjaan;` |
+| | `HAVING condition` | Filter grouped rows | `SELECT Paket_Pekerjaan, COUNT(*) FROM Pekerjaan GROUP BY Paket_Pekerjaan HAVING COUNT(*)>1;` |
+| **Joins** | `INNER JOIN` | Match rows in both tables | `SELECT * FROM Pekerjaan P JOIN Material M ON P.Kode_Material=M.Kode_Material;` |
+| | `LEFT JOIN` | All rows from left + matches from right | `SELECT * FROM Pekerjaan P LEFT JOIN Lampiran L ON P.ID_Pekerjaan=L.ID_Pekerjaan;` |
+| | `RIGHT JOIN` | All rows from right + matches from left | `SELECT * FROM Lampiran L RIGHT JOIN Pekerjaan P ON L.ID_Pekerjaan=P.ID_Pekerjaan;` |
+| **Views** | `CREATE VIEW view_name AS SELECT ...;` | Create a virtual table | `CREATE VIEW Pekerjaan_Material AS SELECT P.Proyek, M.Nama_Bahan FROM Pekerjaan P JOIN Material M ON P.Kode_Material=M.Kode_Material;` |
+| | `SELECT * FROM view_name;` | Query a view | `SELECT * FROM Pekerjaan_Material;` |
+| **Backup & Restore** | `mysqldump -u root -p db_name > backup.sql` | Backup a database | `mysqldump -u root -p projectdb > projectdb_backup.sql` |
+| | `mysql -u root -p db_name < backup.sql` | Restore a database | `mysql -u root -p projectdb < projectdb_backup.sql` |
+| **Miscellaneous** | `SHOW CREATE TABLE table_name;` | See table creation SQL | `SHOW CREATE TABLE Pekerjaan;` |
+| | `EXPLAIN SELECT ...;` | Show query execution plan | `EXPLAIN SELECT * FROM Pekerjaan;` |
+| | `DESCRIBE table_name;` | Show table columns | `DESCRIBE Material;` |
 
