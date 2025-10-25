@@ -30,16 +30,45 @@ Open a terminal (or VS Code terminal) and run:
 mysql --version
 ```
 
-✅ If you see a version number like this you are up to date:
+### ✅ If you see a version number like this you are up to date go to Open MySQL from VS Code Terminal:
 ```bash
 mysql  Ver 8.0.xx for Win64 on x86_64 (MySQL Community Server)
 ```
 
-❌ If you see 'mysql' is not recognized...
-→ Add the MySQL bin folder to your PATH:
+
+---
+### ❌ If you see 'mysql' is not recognized... while running
 ```bash
-IDK
+mysql --version
 ```
+<details>
+  <summary style=""><h3>How To Fix It (Windows Only)</h3></summary>
+
+Open File Explorer
+### Go to one of these common paths and copy the path folder for later use:
+```bash
+C:\Program Files\MySQL\MySQL Server 8.0\bin
+```
+or
+```bash
+C:\Program Files (x86)\MySQL\MySQL Server 8.0\bin
+```
+<img src="./TutorTroubleshoot1.jpg" alt="Try Refresh" width="500">
+
+### Search Environment Variable in Windows search bar and press it
+
+<img src="./TutorTroubleshoot2.jpg" alt="Try Refresh" width="500">
+
+### Click Environment Variables...
+
+<img src="./TutorTroubleshoot3.jpg" alt="Try Refresh" width="500">
+
+### See System variables' Box , Click the Path      C:\ProgramFiles..... 
+then Click Edit
+
+<img src="./TutorTroubleshoot4.jpg" alt="Try Refresh" width="500">
+</details>
+
 
 ### Open MySQL from VS Code Terminal
 Open your project folder in VS Code.
